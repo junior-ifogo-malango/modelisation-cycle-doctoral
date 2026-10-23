@@ -1,0 +1,48 @@
+@startuml
+skinparam shadowing false
+skinparam defaultFontSize 18
+skinparam wrapWidth 260
+skinparam ArrowFontSize 16
+skinparam NoteFontSize 15
+title Inscription au cycle doctoral (sans plateforme)
+
+start
+:Directeur de thèse\npropose un sujet;
+:Structure puis CED\nvalident le sujet;
+:PED publie les sujets;
+:Candidat choisit un sujet\net dépose sa candidature;
+:CED vérifie la recevabilité;
+if (Recevable ?) then (non)
+  :Candidat informé du rejet;
+  stop
+else (oui)
+endif
+:Commission évalue le candidat\net établit le PV;
+note right: En présence du\ndirecteur de thèse
+:CED puis chef d'établissement\napprouvent les listes;
+:PED publie les résultats;
+if (Résultat ?) then (refusé)
+  :Candidat informé du refus;
+  stop
+elseif (liste d'attente) then
+  :CED maintient le candidat\nsur la liste d'attente;
+  if (Place libérée ?) then (non)
+    :Candidat informé du refus\nà la clôture;
+    stop
+  else (oui)
+  endif
+else (admis)
+endif
+:Candidat informé de l'admission;
+:Charte signée par le candidat,\nle directeur et la structure;
+repeat
+  :Candidat dépose le\ndossier administratif;
+  :Administration vérifie le dossier;
+repeat while (Dossier incomplet ?) is (oui) not (non)
+:CED puis chef d'établissement\nsignent la charte;
+note right: Après vérification\ndu dossier
+:Chef d'établissement\nprononce l'inscription;
+:Administration exécute l'inscription;
+:Candidat devient doctorant inscrit;
+stop
+@enduml
