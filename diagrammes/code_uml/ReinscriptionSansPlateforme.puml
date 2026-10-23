@@ -1,0 +1,47 @@
+@startuml
+skinparam shadowing false
+skinparam defaultFontSize 18
+skinparam wrapWidth 260
+skinparam ArrowFontSize 16
+skinparam NoteFontSize 15
+title Réinscription au cycle doctoral (sans plateforme)
+
+start
+:Doctorant remet le rapport\navec son directeur;
+if (Plus de 3 ans de préparation ?) then (oui)
+  :Doctorant demande une prorogation;
+  :Directeur justifie, comité puis\nCED donnent leur avis;
+  :Chef d'établissement\ndécide de la prorogation;
+  if (Prorogation accordée ?) then (non)
+    :Doctorant informé de l'arrêt;
+    stop
+  else (oui)
+  endif
+  if (6e année exceptionnelle ?) then (oui)
+    :Chef propose, président de\nl'université décide;
+    if (Accordée ?) then (non)
+      :Doctorant informé de l'arrêt;
+      stop
+    else (oui)
+    endif
+  else (non)
+  endif
+else (non)
+endif
+:Directeur, comité et structure\ndonnent avis et accord sur le rapport;
+:CED examine le dossier\net décide de la réinscription;
+note right: Hypothèse à confirmer\n(charte art. 8)
+if (Réinscription autorisée ?) then (non)
+  :CED réexamine le dossier;
+  if (Situation régularisée ?) then (non)
+    :CED prononce l'arrêt du parcours;
+    :Doctorant informé de la décision;
+    stop
+  else (oui)
+  endif
+else (oui)
+endif
+:Administration exécute\nla réinscription;
+:Doctorant réinscrit pour l'année;
+stop
+@enduml
